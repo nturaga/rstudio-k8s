@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rstudio-pod
+  labels:
+    app: rstudio
+spec:
+  containers:
+    - name: rstudio
+      image: rocker/rstudio:3.6.0
+      env:
+        - name: PASSWORD
+          value: "bioc"
+      ports:
+        - containerPort: 8787
+      volumeMounts:
+        - mountPath: "/home/rstudio/"
+          name: rstudio-mount
+  volumes:
+    - name: rstudio-mount
+      hostPath:
+        path: "/home/rstudio/"
+  restartPolicy: "OnFailure"
