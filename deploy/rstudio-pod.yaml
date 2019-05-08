@@ -13,11 +13,11 @@ spec:
           value: "bioc"
       ports:
         - containerPort: 8787
-      volumeMounts:
-        - mountPath: "/home/rstudio/"
-          name: rstudio-mount
-  volumes:
-    - name: rstudio-mount
-      hostPath:
-        path: "/home/rstudio/"
+  #     volumeMounts:
+  #       - mountPath: "/home/rstudio/shared"
+  #         name: rstudio-mount
+  # volumes:
+  #   - name: rstudio-mount
+  #     hostPath:
+  #       path: "/home/rstudio/shared"
   restartPolicy: "OnFailure"
