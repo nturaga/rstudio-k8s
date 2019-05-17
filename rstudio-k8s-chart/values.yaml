@@ -1,0 +1,19 @@
+# Default values for rstudio-k8s-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+rstudio_app_name: "rstudio"
+
+image:
+  repository: rocker/rstudio:3.6.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 8787
+  nodePort: 30001
+  name: http
+
+env:
+  name: PASSWORD
+  value: "bioc"

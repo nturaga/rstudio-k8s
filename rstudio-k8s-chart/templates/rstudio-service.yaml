@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.rstudio_app_name }}
+  labels:
+    app: {{ .Values.rstudio_app_name }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      nodePort: {{ .Values.service.nodePort }}
+      name : {{ .Values.service.name }}
+  selector:
+    app: {{ .Values.rstudio_app_name }}
