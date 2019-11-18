@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: rstudio-pod
+  name: {{ .Release.Name}}-rstudio-pod
   labels:
-    app: {{ .Values.rstudio_app_name }}
+    app: rstudio
 spec:
   containers:
-    - name: {{ .Values.rstudio_app_name }}
-      image: {{ .Values.image.repository }}
+    - name: rstudio
+      image: {{ .Values.cluster.rstudioImage }}
+      tag: {{ .Values.cluster.rstudioTag}}
       env:
-        - name: {{ .Values.env.name }}
-          value: {{ .Values.env.value }}
+        - name: {{ .Values.rstudioConfig.env.name }}
+          value: {{ .Values.rstudioConfig.env.value }}
       ports:
-        - containerPort: {{ .Values.service.port }}
-      imagePullPolicy: {{ .Values.image.pullPolicy }}
-  restartPolicy: "OnFailure"
-  
+        - containerPort: {{ .Values.rstudioConfig.port }}
+      imagePullPolicy: {{ .Values.rstudioConfig.pullPolicy }}
+  restartPolicy: {{ .Values.clusterConfig.restartPolicy}}
